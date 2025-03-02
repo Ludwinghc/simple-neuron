@@ -1,0 +1,23 @@
+name: Create Release on Tag
+
+on:
+  push:
+    tags:
+      - "v*"  # Se ejecuta cuando el tag empieza con 'v' (ej: v1.0.0)
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: "🚀 Nueva versión publicada: ${{ github.ref_name }}"
+          draft: false
+          prerelease: false
