@@ -3,7 +3,10 @@ name: Create Release on Tag
 on:
   push:
     tags:
-      - "v*"  # Se ejecuta cuando el tag empieza con 'v' (ej: v1.0.0)
+      - "v*"  # Se ejecuta cuando creas un tag (ej: v1.0.0)
+
+permissions:
+  contents: write  # 🔥 IMPORTANTE: Permite a GitHub Actions crear un release
 
 jobs:
   release:
