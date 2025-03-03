@@ -7,22 +7,108 @@
 <section class="hero is-link">
   <div class="hero-body">
     <p class="title level-item has-text-centered">AND Logical Gate</p>
-    <p class="subtitle">A logic AND gate is a digital circuit that outputs true (1) only if both of its inputs are true (1). If any input is false (0), the output will be false (0).</p>
+    <p class="subtitle">A logic AND gate is a digital circuit that outputs true (1) only if both of its inputs are true
+      (1). If any input is false (0), the output will be false (0).</p>
   </div>
 </section>
 <br>
 <p class="level-item has-text-centered">
-    <img src="{% static 'assets/compuerta-logica-and.jpg' %}" alt=".." height="270px" width="270px" />
+  <img src="{% static 'assets/compuerta-logica-and.jpg' %}" alt=".." height="270px" width="270px" />
 </p>
 <br>
 <form method="post">
-  {% csrf_token %}  <!-- Token de seguridad -->
+  {% csrf_token %} <!-- Token de seguridad -->
   <p class="level-item has-text-centered">
     <button type="submit" class="button is-large is-link is-dark">Start</button>
   </p>
-  </form>
+</form>
 
-  {% if mensaje %}
-  <p class="is-link"><strong class="is-link">Resultado:</strong> {{ mensaje }}</p>
-  {% endif %}
+<!-- 📌 Tabla de la DataInput -->
+<section class="section">
+  <h2 class="title is-4">Dataset de Entrenamiento</h2>
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th>Entrada 1</th>
+        <th>Entrada 2</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in dataInput %}
+      <tr>
+        <td>{{ row.0 }}</td>
+        <td>{{ row.1 }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<!-- 📌 Tabla de Iteraciones -->
+<section class="section">
+  <h2 class="title is-4">Iteraciones del Entrenamiento</h2>
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th>Iteración</th>
+        <th>Entrada</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in iteracion %}
+      <tr>
+        <td>{{ i }}</td>
+        <td>{{ inputIteration|slice:i }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<!-- 📌 Resultados del entrenamiento -->
+<section class="section">
+  <h2 class="title is-4">Resultados del Entrenamiento</h2>
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th>Iteración</th>
+        <th>Entrada</th>
+        <th>Salida</th>
+        <th>Error</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in iteracion %}
+      <tr>
+        <td>{{ i }}</td>
+        <td>{{ Inputs|slice:i }}</td>
+        <td>{{ Outputs|slice:i }}</td>
+        <td>{{ Error|slice:i }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<!-- 📌 Evaluación del Perceptrón -->
+<section class="section">
+  <h2 class="title is-4">Evaluación del Perceptrón</h2>
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th>Entrada</th>
+        <th>Salida Predicha</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in Inputs %}
+      <tr>
+        <td>{{ i }}</td>
+        <td>{{ PredictedValues|slice:forloop.counter0 }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
 {% endblock %}
