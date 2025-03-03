@@ -1,0 +1,34 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %}Neuron Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-body">
+    <p class="title level-item has-text-centered">Neuron Simulator</p>
+    <p class="subtitle level-item has-text-centered">This is a web page to watch how a simple neuron works</p>
+  </div>
+</section>
+<article class="panel is-link">
+  <p class="panel-heading">Options of simulations</p>
+  <a class="panel-block" href="{% url 'andGate' %}">
+    <span class="panel-icon">
+      <i class="fas fa-book" aria-hidden="true"></i>
+    </span>
+    And Logical Gate
+  </a>
+  <a class="panel-block is-active">
+    <span class="panel-icon">
+      <i class="fas fa-book" aria-hidden="true"></i>
+    </span>
+    Or Logical Gate
+  </a>
+  <a class="panel-block is-active">
+    <span class="panel-icon">
+      <i class="fas fa-book" aria-hidden="true"></i>
+    </span>
+    Not Logical Gate
+  </a>
+
+</article>
+{% endblock %}
