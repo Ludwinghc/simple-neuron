@@ -38,7 +38,7 @@ class Perceptron:
 # Definicion de la clase de entrenamiento
 class Trainer:
     # Definicion de los atributos de la clase
-    def __init__(self, perceptron, dataset, iterations=5):
+    def __init__(self, perceptron, dataset, iterations=12):
         self.perceptron = perceptron
         self.input_vector, self.expected_vector = dataset.get_data()
         self.iterations = iterations
