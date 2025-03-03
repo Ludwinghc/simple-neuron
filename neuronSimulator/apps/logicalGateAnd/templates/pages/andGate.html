@@ -44,27 +44,6 @@
   </table>
 </section>
 
-<!-- 📌 Tabla de Iteraciones -->
-<section class="section">
-  <h2 class="title is-4">Iteraciones del Entrenamiento</h2>
-  <table class="table is-bordered is-striped is-fullwidth">
-    <thead>
-      <tr>
-        <th>Iteración</th>
-        <th>Entrada</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for i in iteracion %}
-      <tr>
-        <td>{{ i }}</td>
-        <td>{{ inputIteration|slice:i }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</section>
-
 <!-- 📌 Resultados del entrenamiento -->
 <section class="section">
   <h2 class="title is-4">Resultados del Entrenamiento</h2>
