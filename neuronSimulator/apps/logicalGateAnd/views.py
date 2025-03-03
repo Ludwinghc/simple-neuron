@@ -3,6 +3,7 @@ from django.shortcuts import render, HttpResponse, redirect
 # Llamado a las clases
 from .services import Data, Perceptron, Trainer
 
+import numpy as np
 # Create your views here.
 def andGate(request):
   # Nuevo llamado a la instancia  de la data
@@ -35,10 +36,10 @@ def andGate(request):
       'pages/andGate.html',
       {
         "dataInput": dataset.input_vector.tolist(),
-        "iteracion" : iterationList,
-        "inputIteration" : inputIterationList,
-        "Outputs" : trainerOuputsValues,
+        "iteracion" : list(range(iterationValue)),
+        "inputIteration" : list(range(inputIteration)),
+        "Outputs" : [out.tolist() if isinstance(out, np.ndarray) else out for out in trainerOuputsValues],
         "Error" : trainerErrorValues,
-        "Inputs" : trainerInputValues,
-        "PredictedValues" : trainerPredictedValues,
+        "Inputs" : [inp.tolist() for inp in trainerInputValues],
+        "PredictedValues" : [pred.tolist() if isinstance(pred, np.ndarray) else pred for pred in trainerPredictedValues],
         })

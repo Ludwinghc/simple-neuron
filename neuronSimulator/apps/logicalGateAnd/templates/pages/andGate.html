@@ -1,5 +1,7 @@
 {% extends "layouts/base.html" %}
 {% load static %}
+{% load custom_filters %}
+
 
 {% block title %}And Logical Gate{% endblock %}
 
@@ -60,9 +62,9 @@
       {% for i in iteracion %}
       <tr>
         <td>{{ i }}</td>
-        <td>{{ Inputs|slice:i }}</td>
-        <td>{{ Outputs|slice:i }}</td>
-        <td>{{ Error|slice:i }}</td>
+        <td>{{ Inputs|index:forloop.counter0 }}</td>
+        <td>{{ Outputs|index:forloop.counter0 }}</td>
+        <td>{{ Error|index:forloop.counter0 }}</td>        
       </tr>
       {% endfor %}
     </tbody>
@@ -83,7 +85,7 @@
       {% for i in Inputs %}
       <tr>
         <td>{{ i }}</td>
-        <td>{{ PredictedValues|slice:forloop.counter0 }}</td>
+        <td>{{ PredictedValues|index:forloop.counter0 }}</td> 
       </tr>
       {% endfor %}
     </tbody>
