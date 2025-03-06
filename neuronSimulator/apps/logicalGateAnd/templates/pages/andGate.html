@@ -21,10 +21,18 @@
 <form method="post">
   {% csrf_token %} <!-- Token de seguridad -->
   <p class="level-item has-text-centered">
+    <input class="input is-link" type="text" placeholder="Input #1" name="x1" id="x1" />
+  </p>
+  <br>
+  <p class="level-item has-text-centered">
+    <input class="input is-link" type="text" placeholder="Input #2"  />
+  </p>
+  <br>
+  <p class="level-item has-text-centered">
     <button type="submit" class="button is-large is-link is-dark">Start</button>
   </p>
 </form>
-<section class="section">
+<!-- <section class="section">
   <h2 class="title is-4">Data de Entrenamiento</h2>
   <table class="table is-bordered is-striped is-fullwidth">
     <thead>
@@ -42,8 +50,8 @@
       {% endfor %}
     </tbody>
   </table>
-</section>
-<section class="section">
+</section> -->
+<!-- <section class="section">
   <h2 class="title is-4">Resultados de las iteraciones del Entrenamiento</h2>
   <table class="table is-bordered is-striped is-fullwidth">
     <thead>
@@ -60,31 +68,32 @@
         <td>{{ i }}</td>
         <td>{{ Inputs|index:forloop.counter0 }}</td>
         <td>{{ Outputs|index:forloop.counter0 }}</td>
-        <td>{{ Error|index:forloop.counter0 }}</td>        
+        <td>{{ Error|index:forloop.counter0 }}</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
-</section>
+</section> -->
 
 <section class="section">
   <h2 class="title is-4">Evaluación final del Perceptrón</h2>
   <table class="table is-bordered is-striped is-fullwidth">
     <thead>
       <tr>
-        <th>Entrada</th>
+        <th>Entrada X1</th>
+        <th>Entrada X2</th>
         <th>Salida Predicha</th>
       </tr>
     </thead>
     <tbody>
-      {% for i in Inputs %}
       <tr>
-        <td>{{ i }}</td>
-        <td>{{ PredictedValues|index:forloop.counter0 }}</td> 
+        <td>{{ x1 }}</td> <!-- Primera posición del array = X1 -->
+        <td>{{ x2 }}</td> <!-- Segunda posición del array = X2 -->
+        <td>{{ PredictedValues }}</td>
       </tr>
-      {% endfor %}
     </tbody>
   </table>
 </section>
+
 
 {% endblock %}

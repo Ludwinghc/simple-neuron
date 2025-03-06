@@ -57,13 +57,11 @@ class Trainer:
         
         return outputResults, errorResults, self.iterations
     # Definicion para mostrar los datos
-    def evaluate(self):
-        Input = []
+    def evaluate(self, vector):
         predictions = []
-        for i in range(len(self.input_vector)):
-            output = self.perceptron.predict(self.input_vector[i])
-            Input.append(self.input_vector[i])
+        for i in range(len(vector)):
+            output = self.perceptron.predict(vector)
             predictions.append(output)
-        return Input, predictions, len(self.input_vector)
+        return output, len(self.input_vector)
 
 
