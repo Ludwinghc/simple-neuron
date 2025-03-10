@@ -11,24 +11,20 @@ def andGate(request):
   # Nuevo llamado a la instancia del perpectron 
   perceptron = Perceptron(input_size=2, alpha=0.1)
   # Nuevo llamado a la instancia del trainer
-  trainer = Trainer(perceptron, dataset)
-  iterationList = []
-  inputIterationList = []
-  trainerOuputsValues = []
-  trainerErrorValues = []
-  iterationValue = 0
-  trainerInputValues = []
   trainerPredictedValues = []
-  inputIteration = 0
-  if request.method == "POST":	
+  inputIteration = []
+  iterations = 0
 
-    
-    
+  if request.method == "POST":	
+    # Captura de datos del formulario
+    iterations = int(request.POST.get('iterations'))
+    input1 = int(request.POST.get('input1'))
+    input2 = int(request.POST.get('input2'))
+    inputIteration = np.array([[input1, input2]])
+    trainer = Trainer(perceptron, dataset, iterations=iterations)
     # Llamado a los metodos del trainer para mostrar los resultados
-    trainerOuputsValues, trainerErrorValues, iterationValue = trainer.train()
-    trainerInputValues, trainerPredictedValues, inputIteration = trainer.evaluate()
-    iterationList = list(range(iterationValue))  # Lista de 0 a iterationValue-1
-    inputIterationList = list(range(inputIteration))
+    trainer.train()
+    trainerPredictedValues = trainer.evaluate(input=inputIteration)
     
     
   return render(
@@ -36,10 +32,6 @@ def andGate(request):
       'pages/andGate.html',
       {
         "dataInput": dataset.input_vector.tolist(),
-        "iteracion" : list(range(iterationValue)),
-        "inputIteration" : list(range(inputIteration)),
-        "Outputs" : [out.tolist() if isinstance(out, np.ndarray) else out for out in trainerOuputsValues],
-        "Error" : trainerErrorValues,
-        "Inputs" : [inp.tolist() for inp in trainerInputValues],
+        "Inputs" : [inp.tolist() for inp in inputIteration],
         "PredictedValues" : [pred.tolist() if isinstance(pred, np.ndarray) else pred for pred in trainerPredictedValues],
         })
