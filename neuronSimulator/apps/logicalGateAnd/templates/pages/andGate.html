@@ -21,6 +21,24 @@
 <form method="post">
   {% csrf_token %} <!-- Token de seguridad -->
   <p class="level-item has-text-centered">
+    <div class="control">
+      <input class="input is-hovered" type="number" name="iterations" id="iterations" placeholder="Digite el número de iteraciones" />
+    </div>
+  </p>
+  <br>
+  <p class="level-item has-text-centered">
+    <div class="control">
+      <input class="input is-hovered" type="number" name="input1" id="input1" placeholder="Digita la Entrada #1" />
+    </div>
+  </p>
+  <br>
+  <p class="level-item has-text-centered">
+    <div class="control">
+      <input class="input is-hovered" type="number" name="input2" id="input2" placeholder="Digite la Entrada #2" />
+    </div>
+  </p>
+  <br>
+  <p class="level-item has-text-centered">
     <button type="submit" class="button is-large is-link is-dark">Start</button>
   </p>
 </form>
@@ -43,30 +61,6 @@
     </tbody>
   </table>
 </section>
-<section class="section">
-  <h2 class="title is-4">Resultados de las iteraciones del Entrenamiento</h2>
-  <table class="table is-bordered is-striped is-fullwidth">
-    <thead>
-      <tr>
-        <th>Iteración</th>
-        <th>Entrada</th>
-        <th>Salida</th>
-        <th>Error</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for i in iteracion %}
-      <tr>
-        <td>{{ i }}</td>
-        <td>{{ Inputs|index:forloop.counter0 }}</td>
-        <td>{{ Outputs|index:forloop.counter0 }}</td>
-        <td>{{ Error|index:forloop.counter0 }}</td>        
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</section>
-
 <section class="section">
   <h2 class="title is-4">Evaluación final del Perceptrón</h2>
   <table class="table is-bordered is-striped is-fullwidth">
